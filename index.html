@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8' />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <meta name="description" content="Json-data-to-php-table--auto-fill : JSON code to PHP Table " />
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>Json-data-to-php-table--auto-fill</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/anthonydpoore/Json-Data-to-PHP-Table--Auto-Fill">View on GitHub</a>
+
+          <h1 id="project_title">Json-data-to-php-table--auto-fill</h1>
+          <h2 id="project_tagline">JSON code to PHP Table </h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/anthonydpoore/Json-Data-to-PHP-Table--Auto-Fill/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/anthonydpoore/Json-Data-to-PHP-Table--Auto-Fill/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <p>Json Code--------------------------------</p>
+
+<p>{
+    "success": "1",
+    "data": [
+        {
+            "name": "Ranjith K",
+            "advertiser_code": "RLP76433",
+            "credit": 17,
+            "phone_number": "+324158004869",
+            "notes": "You are advertiser 3",
+            "advertiser_status": "ACTIVE",
+            "created_at": "2012-04-06T10:18:00Z",
+            "email": "<a href="mailto:ad3@gmail.com">ad3@gmail.com</a>"
+        },
+        {
+            "name": "Karti Keyan MK",
+            "advertiser_code": "RLP87238",
+            "credit": 131,
+            "phone_number": "+14158004869",
+            "notes": "You are advertiser 2  and your address is \n8/1 a CID Qtrs Chennai Bangalore\n                        ",
+            "advertiser_status": "ACTIVE",
+            "created_at": "2012-04-06T10:17:00Z",
+            "email": "<a href="mailto:ad2@gmail.com">ad2@gmail.com</a>"
+        }
+    ]
+}</p>
+
+<p>Table Code----------------------------------------------</p>
+
+<p>&lt;?php
+$url = "your Json URL ";
+$file_contents = file_get_contents($url);</p>
+
+<p>// making json object from json string
+$json = json_decode($file_contents, true);
+?&gt;</p>
+
+<table border="1" width="100%">
+<tr>
+<td>name</td>
+        <td>Credits </td>
+        <td>Ring Income ID</td>
+        <td>Phone Number</td>
+        <td>Email</td>
+        <td>Advertiser Status</td>
+        <td>Created </td>
+    </tr>
+<tr>
+<td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+<?php // checking for success tag
+    if ($json["success"] == "1") {
+        // getting data
+        $json = $json["data"];
+
+        // looping through data node
+        foreach ($json as $data => $person) {
+            echo "<tr>";
+            echo "<td>" . $person["name"] . "</td>";
+            echo "<td>" . $person["credit"] . "</td>";
+            echo "<td>" . $person["advertiser_code"] . "</td>";
+            echo "<td>" . $person["phone_number"] . "</td>";
+            echo "<td>" . $person["email"] . "</td>";
+            echo "<td>" . $person["advertiser_status"] . "</td>";
+            echo "<td>" . $person["created_at"] . "</td>";
+            echo "</tr>";
+        }
+    } else {
+        // failed to get api details
+        // success = 0
+    }
+    ?&gt;
+
+</table><p>do a test </p>
+
+<p>step 1</p>
+
+<p>Make a php file with the Json code in the file </p>
+
+<p>name the file test.php</p>
+
+<p>Step 2</p>
+
+<p>make a file called show.php</p>
+
+<p>put the Table script in this file</p>
+
+<p>Step 3 </p>
+
+<p>enter your url in this area 
+$url = "http://yoururl/test.php";</p>
+
+<p>and all the data will appear  in the table the table will fill its self up </p>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">Json-data-to-php-table--auto-fill maintained by <a href="https://github.com/anthonydpoore">anthonydpoore</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+    
+
+  </body>
+</html>
